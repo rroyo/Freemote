@@ -1,0 +1,122 @@
+:root {
+    --background: #F0F0F0;
+    --bg-name-title: skyblue;
+    --bg-content: #FFF;
+    --h2: dimgrey;
+    --h2-bottom: deepskyblue;
+    --a: deepskyblue;
+    --p: grey;
+    --p: slategrey;
+    --li-before: #72daff;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--a);
+}
+
+body {
+    background-color: var(--background);
+    font-family: sans-serif;
+}
+
+h1, h1 > p, h2 {
+    font-weight: lighter;
+}
+
+h2 {
+    color: var(--h2);
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 3px solid var(--h2-bottom);
+    width: 100px;
+}
+
+p, li {
+    color: var(--p);
+    font-size: 0.8rem;
+}
+
+p {
+    text-align: justify;
+    line-height: 1.8rem;
+    margin-bottom: 1.8rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.card-container {
+    width: 40%;
+    margin: 50px auto;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.hero-image {
+    height: auto;
+}
+
+.hero-image img {
+    width: 100%;
+    margin-bottom: -10px;
+    border-radius: 6px 6px 0 0;
+}
+
+.name-title {
+    width: 100%;
+    background: var(--bg-name-title);
+    padding: 50px 0 40px 40px;
+}
+
+.name-title p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.name-title h1, .name-title p {
+    color: white;
+}
+
+.name-title p {
+    margin-top: 20px;
+}
+
+.about, .work, .contact {
+    margin-bottom: 2px;
+    background-color: var(--bg-content);
+    padding: 40px 40px 30px;
+}
+
+.work ul > li {
+    margin-bottom: 1.5rem;
+    padding-left: 30px;
+    position: relative;
+}
+
+.work ul li::before{
+    background: transparent url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M31.7%2C21.1L14.3%2C38.5C14%2C38.8%2C13.7%2C39%2C13.2%2C39c-0.4%2C0-0.7-0.1-1.1-0.5l-3.9-3.9c-0.2-0.2-0.5-0.6-0.5-1.1%20c0-0.4%2C0.1-0.7%2C0.5-1.1L20.7%2C20L8.3%2C7.6C8.1%2C7.3%2C7.8%2C7%2C7.8%2C6.5c0-0.4%2C0.1-0.7%2C0.5-1.1l3.9-3.9C12.5%2C1.2%2C12.8%2C1%2C13.3%2C1%20c0.4%2C0%2C0.7%2C0.1%2C1.1%2C0.5l17.4%2C17.4c0.2%2C0.2%2C0.5%2C0.6%2C0.5%2C1.1C32.1%2C20.4%2C31.9%2C20.7%2C31.7%2C21.1z%22%20fill%3D%22%23FFFFFF%22%20%2F%3E%3C%2Fsvg%3E') scroll 0 0 no-repeat;
+    background-position: 50%;
+    background-color: var(--li-before);
+    background-size: 55%;
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.contact {
+    border-radius: 0 0 6px 6px;
+}
+
