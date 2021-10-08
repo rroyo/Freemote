@@ -1,0 +1,168 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #f7f8f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    background-color: white;
+    width: 375px;
+    height: 667px;
+    display: flex;
+}
+
+.content-container {
+    margin: 30px 40px;
+}
+
+.top-container {
+    text-align: center;
+}
+
+.top-container-right {
+    display: none;
+}
+
+.logo > img {
+    width: 40%;
+}
+
+.top-container > .logo > img {
+    margin-bottom: 40px;
+}
+
+.top-container > h5 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.top-container > p {
+    margin: 10px 0 20px 0;
+    font-size: .95rem;
+    font-weight: 300;
+}
+
+.top-container > p > a {
+    text-decoration: none;
+    color: dodgerblue;
+    font-weight: 400;
+}
+
+input[type="password"], [type="email"] {
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: .95rem;
+    transition: box-shadow linear .2s;
+}
+
+input[type="password"]:focus, [type="email"]:focus {
+    transition: box-shadow linear .1s;
+    outline: none;
+    border-color: dodgerblue;
+    box-shadow: 0 0 5px dodgerblue;
+}
+
+.check-ctr {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-weight: 300;
+    font-size: .95rem;
+}
+
+.check-ctr > input {
+    margin-right: 15px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 35px;
+    background-color: #1e90ff;
+    color: white;
+    border-width: 0;
+    border-radius: 5px;
+    font-size: .95rem;
+    margin-bottom: 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #3f6c9b;
+}
+
+input[type="submit"] ~ p {
+    text-align: center;
+    margin-bottom: 3px;
+    font-size: .95rem;
+}
+
+input[type="submit"] ~ p > a{
+    text-decoration: none;
+    color: dimgrey;
+}
+
+@media only screen and (max-width: 767px) {
+    .container {
+        min-width: 375px;
+        min-height: 667px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 400px;
+        height: 525px;
+        box-shadow: 0 20px 40px 15px lightgrey;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 800px;
+    }
+
+    .content-container {
+        width: 320px;
+    }
+
+    .logo {
+        text-align: left;
+    }
+
+    .top-container-right {
+        background: bottom / 100% url("https://kajabi-app-assets.kajabi-cdn.com/assets/cycles/new_york/background-6552c60c7629ffb6d311356cde6f3e3a3fce3db65a2194a7aed6d45eede7ea50.jpg");
+        width: 400px;
+        height: 525px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .top-container-right > a {
+        padding: 25px;
+        display: block;
+        text-decoration: none;
+        color: white;
+        line-height: 22px;
+    }
+
+    .top-container-right > a > img {
+        width: 150px;
+        margin-bottom: 10px;
+    }
+}
