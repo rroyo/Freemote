@@ -1,0 +1,225 @@
+:root {
+    --h1-size: 2.2rem;
+    --h2: #858585;
+    --h2-size: 1.35rem;
+    --h3: #FFF;
+    --h3-size: 1.3rem;
+    --soft-border: rgba(240, 240, 240, 0.3);
+    --a: #FFF;
+    --bg: #C7E3F2;
+    --header: #FFF;
+    --about: #4299FF;
+    --work: #3288ED;
+    --footer: #277DE3;
+    --social: #EEE;
+    --text: #DDD;
+    --text-size: 1.1rem;
+    --text-size-chg-1: 0.9rem;
+    --text-size-chg-2: 1.15rem;
+}
+
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--a);
+    font-size: var(--text-size);
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--bg);
+}
+
+h3 {
+    font-size: var(--h3-size);
+    padding-bottom: 25px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--soft-border);
+    color: var(--h3);
+    font-weight: normal;
+}
+
+li {
+    list-style-type: none;
+    line-height: 2.2rem;
+}
+
+p {
+    line-height: 1.8rem;
+}
+
+p, li {
+    color: var(--text);
+    font-size: var(--text-size);
+    font-weight: lighter;
+}
+
+#wrapper {
+    width: 100vw;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#content {
+    margin: 1vh 1vw;
+    width: 85vw;
+    min-width: 300px;
+    max-width: 800px;
+    display: inherit;
+    flex-direction: inherit;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    background-color: var(--header);
+    border-radius: 10px 10px 0 0;
+}
+
+header img {
+    width: 120px;
+    border-radius: 100%;
+    align-self: center;
+    margin-top: 40px;
+}
+
+header h1, header h2 {
+    align-self: center;
+    font-weight: normal;
+}
+
+header h1 {
+    font-size: var(--h1-size);
+    margin: 30px 0 20px;
+}
+
+header h2 {
+    font-size: var(--h2-size);
+    color: var(--h2);
+    margin-bottom: 40px;
+}
+
+#about, #work, footer {
+    height: auto;
+    padding: 35px 30px;
+}
+
+#about {
+    background-color: var(--about);
+}
+
+#work {
+    background-color: var(--work);
+}
+
+#work ul li {
+    position: relative;
+    padding-left: 35px;
+}
+
+#work ul li::before {
+    background: transparent url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x%3D%220px%22%20y%3D%220px%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M37.9%2C10.6l-3.2-3.2c-0.4-0.4-1-0.7-1.6-0.7c-0.6%2C0-1.2%2C0.2-1.6%2C0.7L15.9%2C23l-7-7c-0.4-0.4-1-0.7-1.6-0.7S6.1%2C15.6%2C5.6%2C16%20l-3.2%2C3.2c-0.4%2C0.4-0.7%2C1-0.7%2C1.6S2%2C22%2C2.4%2C22.5l8.6%2C8.6l3.2%2C3.2c0.4%2C0.4%2C1%2C0.7%2C1.6%2C0.7c0.6%2C0%2C1.2-0.2%2C1.6-0.7l3.2-3.2l17.2-17.2%20c0.4-0.4%2C0.7-1%2C0.7-1.6C38.6%2C11.6%2C38.4%2C11.1%2C37.9%2C10.6z%22%20fill%3D%22%23FFFFFF%22%20%2F%3E%3C%2Fsvg%3E')  scroll 0 0 no-repeat;
+    background-size: 55%;
+    background-position: 50%;
+    background-color: transparent;
+    border-radius: 100%;
+    border: 1px solid var(--soft-border);
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 8px;
+    left: 0;
+}
+
+footer {
+    background-color: var(--footer);
+    border-radius: 0 0 10px 10px;
+}
+
+#social-icons {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+#social-icons > div {
+    font-size: var(--text-size);
+    color: var(--social);
+    margin: 0 10px 10px 0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--soft-border);
+}
+
+@media only screen and (min-width: 346px) {
+    #content {
+        margin: 2vh 2vw;
+    }
+}
+
+@media only screen and (min-width: 466px) {
+    #content {
+        margin: 5vh 5vw;
+    }
+}
+
+@media only screen and (min-width: 596px) {
+    #content {
+        max-width: 520px;
+    }
+}
+
+@media only screen and (min-width: 736px) {
+    * {
+        font-size: var(--text-size-chg-1);
+    }
+
+    #content {
+        margin: 8vh 8vw;
+    }
+
+    #about, #work, footer {
+        display: flex;
+        flex-direction: row;
+        justify-items: left;
+    }
+
+    h3 {
+        flex-grow: 0.3;
+        width: 0;
+        border: 0;
+        text-align: right;
+        padding: 10px 45px 0 0;
+        color: var(--h3);
+        font-weight: normal;
+    }
+
+    #about > p,
+    #work > ul,
+    footer > #social-icons {
+        width: 0;
+        flex-grow: 0.7;
+        padding: 10px 0 10px 45px;
+        border-left: 1px solid var(--soft-border);
+    }
+}
+
+@media only screen and (min-width: 966px) {
+    #content {
+        margin-top: 200px;
+    }
+
+    #wrapper {
+        transform: scale(1.2, 1.2)
+    }
+}
