@@ -27,6 +27,14 @@
 a {
     color: var(--a);
     font-size: var(--text-size);
+    transition-property: color;
+    transition: 150ms ease-out;
+}
+
+a:hover {
+    transition-property: color;
+    transition: 150ms ease-in;
+    color: var(--social-hover);
 }
 
 body {
@@ -155,15 +163,17 @@ footer {
 #social-icons a {
     text-decoration: none;
 }
+#social-icons div {
+    font-size: var(--text-size);
+    margin: 0 10px 10px 0;
+    padding: 10px 15px;
+    border-radius: 6px;
+}
 
 #social-icons div {
     transition-property: border, color;
     transition: 150ms ease-out;
-    font-size: var(--text-size);
     color: var(--social);
-    margin: 0 10px 10px 0;
-    padding: 10px 15px;
-    border-radius: 6px;
     border: 1px solid var(--soft-border);
 }
 
