@@ -7,15 +7,15 @@
     --soft-border: rgba(240, 240, 240, 0.3);
     --a: #FFF;
     --bg: #C7E3F2;
+    --text: #DDD;
     --header: #FFF;
     --about: #4299FF;
     --work: #3288ED;
     --footer: #277DE3;
     --social: #EEE;
-    --text: #DDD;
+    --social-hover: #5EFFFF;
     --text-size: 1.1rem;
     --text-size-chg-1: 0.9rem;
-    --text-size-chg-2: 1.15rem;
 }
 
 *, ::before, ::after {
@@ -152,13 +152,27 @@ footer {
     flex-wrap: wrap;
 }
 
-#social-icons > div {
+#social-icons a {
+    text-decoration: none;
+}
+
+#social-icons div {
+    transition-property: border, color;
+    transition: 150ms ease-out;
     font-size: var(--text-size);
     color: var(--social);
     margin: 0 10px 10px 0;
     padding: 10px 15px;
     border-radius: 6px;
     border: 1px solid var(--soft-border);
+}
+
+#social-icons div:hover {
+    transition-property: border, color;
+    transition: 150ms ease-in;
+    border: 1px solid var(--social-hover);
+    color: var(--social-hover);
+    cursor: pointer;
 }
 
 #social-icons i {
