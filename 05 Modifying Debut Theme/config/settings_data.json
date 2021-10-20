@@ -1,6 +1,13 @@
 {
   "current": {
+    "color_image_overlay": "rgba(0,0,0,0)",
+    "social_twitter_link": "",
+    "social_facebook_link": "https:\/\/facebook.com",
+    "social_pinterest_link": "https:\/\/pinterest.com",
+    "social_instagram_link": "http:\/\/instagram.com",
+    "social_youtube_link": "",
     "favicon": "shopify:\/\/shop_images\/svg-fabicon.png",
+    "currency_code_enabled": false,
     "sections": {
       "header": {
         "type": "header",
@@ -20,19 +27,21 @@
       "hero-1": {
         "type": "hero",
         "settings": {
+          "image": "shopify:\/\/shop_images\/homepage_slider.jpg",
           "alignment": "center",
           "hero_layout": "full_width",
           "hero_size": "large",
           "text_size": "large",
           "title": "Image with text overlay",
           "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.<\/p>",
-          "button_label": "",
-          "button_link": ""
+          "button_label": "SHOP NOW",
+          "button_link": "shopify:\/\/products\/limius™"
         }
       },
       "feature-row": {
         "type": "feature-row",
         "settings": {
+          "image": "shopify:\/\/shop_images\/homepage_1.jpg",
           "layout": "left",
           "title": "Image with text",
           "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
@@ -90,22 +99,9 @@
           "title": "Featured collection",
           "collection": "",
           "grid": 4,
-          "rows": 2,
+          "rows": 1,
           "show_vendor": false,
           "show_view_all": false
-        }
-      },
-      "hero-2": {
-        "type": "hero",
-        "settings": {
-          "alignment": "center",
-          "hero_layout": "full_width",
-          "hero_size": "medium",
-          "text_size": "large",
-          "title": "Image with text overlay",
-          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.<\/p>",
-          "button_label": "",
-          "button_link": ""
         }
       },
       "quotes": {
@@ -148,6 +144,7 @@
           "image-bar-0": {
             "type": "image",
             "settings": {
+              "image": "shopify:\/\/shop_images\/instagram_1.jpg",
               "alignment": "center",
               "link": "",
               "cta_label": ""
@@ -156,6 +153,7 @@
           "image-bar-1": {
             "type": "image",
             "settings": {
+              "image": "shopify:\/\/shop_images\/instagram_2.jpg",
               "alignment": "center",
               "link": "",
               "cta_label": ""
@@ -164,6 +162,16 @@
           "image-bar-2": {
             "type": "image",
             "settings": {
+              "image": "shopify:\/\/shop_images\/instagram_3_0d1089eb-93a7-402b-8419-3bf778430ddb.jpg",
+              "alignment": "center",
+              "link": "",
+              "cta_label": ""
+            }
+          },
+          "78074c51-3774-4d03-b668-5b99744fb29e": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/instagram_4.jpg",
               "alignment": "center",
               "link": "",
               "cta_label": ""
@@ -173,10 +181,11 @@
         "block_order": [
           "image-bar-0",
           "image-bar-1",
-          "image-bar-2"
+          "image-bar-2",
+          "78074c51-3774-4d03-b668-5b99744fb29e"
         ],
         "settings": {
-          "section_height": "medium"
+          "section_height": "small"
         }
       },
       "footer": {
@@ -185,36 +194,98 @@
           "footer-0": {
             "type": "link_list",
             "settings": {
-              "title": "Quick links",
-              "menu": "footer"
+              "title": "Navigation",
+              "menu": "main-menu"
             }
           },
-          "footer-1": {
-            "type": "newsletter",
+          "8a46b304-3fb9-42e4-b6fd-6e2dd0187bd9": {
+            "type": "link_list",
             "settings": {
-              "title": "Newsletter"
+              "title": "Legal",
+              "menu": "legal"
+            }
+          },
+          "6372547a-0813-45c5-95de-979efdda43c6": {
+            "type": "text",
+            "settings": {
+              "title": "Talk about your business",
+              "text": "<p>Share store details, promotions, or brand content with your customers.<\/p>"
             }
           }
         },
         "block_order": [
           "footer-0",
-          "footer-1"
+          "8a46b304-3fb9-42e4-b6fd-6e2dd0187bd9",
+          "6372547a-0813-45c5-95de-979efdda43c6"
         ],
         "settings": {
           "show_payment_icons": true,
           "color_footer_bg": "#f6f6f6",
           "color_footer_text": "#333232",
-          "show_currency_selector": true,
+          "show_currency_selector": false,
           "show_locale_selector": true
+        }
+      },
+      "1634744277e5094c65": {
+        "type": "feature-row",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/instagram_3.jpg",
+          "layout": "right",
+          "title": "Image with text",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+          "button_label": "",
+          "button_link": ""
+        }
+      },
+      "1634744352eb37722e": {
+        "type": "feature-row",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/homepage_3.jpg",
+          "layout": "left",
+          "title": "Image with text",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+          "button_label": "",
+          "button_link": ""
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "show_quantity_selector": false,
+          "show_vendor": false,
+          "enable_payment_button": true,
+          "show_share_buttons": true,
+          "media_size": "medium",
+          "enable_image_zoom": true,
+          "enable_video_looping": false
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "heading": "You may also like",
+          "show_vendor": false
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "layout": "grid",
+          "grid": 4,
+          "rows": 2,
+          "show_collection_image": true,
+          "show_vendor": false,
+          "sort_enable": true,
+          "tags_enable": true
         }
       }
     },
     "content_for_index": [
       "hero-1",
       "feature-row",
-      "feature-columns",
-      "collection",
-      "hero-2",
+      "1634744277e5094c65",
+      "1634744352eb37722e",
       "quotes",
       "image-bar"
     ]
