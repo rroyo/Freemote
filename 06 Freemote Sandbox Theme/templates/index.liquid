@@ -1,31 +1,29 @@
-
-
-
-{%comment%}
 <section>
 <!--Challenge 1 -->
 
 {% assign greeting = "hello world!!!" %}
 
+
 <!-- 
 a.) Render the variable "greeting" in a h1-element  
 -->
- 
+
+    <h1>{{- greeting -}}</h1>
 
 <!-- 
 b.) Copy the h1-tag and use a Liquid filter to turn each letter into a capital letter. 
 -->
 
+    <h1>{{ greeting | upcase }}</h1>
 
 <!-- 
 c.) Copy the h1-tag again and chain another Liquid filter remove all the exclamation marks. 
 -->
 
-
+    <h1>{{ greeting | upcase | remove: "!" }}</h1>
 
 <!-- End Challenge 1 -->
 </section>
-{%endcomment%}
 
 
 
@@ -34,7 +32,7 @@ c.) Copy the h1-tag again and chain another Liquid filter remove all the exclama
 
 
 
-{%comment%}
+
 <section>
 <!--Challenge 2 -->
 
@@ -51,20 +49,25 @@ c.) Copy the h1-tag again and chain another Liquid filter remove all the exclama
 a.) Find a way to build the URL back together and put it out to the frontend.
 Then also create a new variable containing the full image url.
 -->
-  
- 
-  
 
-<!-- 
-b.) Display the image using an HTML Image Tag 
--->
+    {% assign full_url =  base_url | append: img_dimensions | append: img_category %}
 
+    <p src="{{ full_url }}"></p>
+
+
+    <!--
+    b.) Display the image using an HTML Image Tag
+    -->
+
+    <img src="{{ full_url }}"></img>
 
 
 <!-- 
 c.) Copy the image tag and this time use a filter to replace the image category "sports" with "nature" 
 -->
 
+    <img src="{{ full_url | replace: "sports", "nature"  }}"></img>
+    <img src="{{ full_url }}"></img>
 
   
 <!-- 
@@ -72,19 +75,18 @@ d.) Answer the following question:
 Did the replace filter permanently modify the variable itself or did it just affect the output once?
 -->
   
- 
+ {%  comment %} Just the output once {% endcomment %}
   
 <!-- 
 e.) Find a way to change the value of the variable and set the category to "cats".
 Then put out the image again.
 -->
-  
-  
 
+    <img src="{{ full_url | replace: "sports", "cats"  }}"></img>
+    <p>{{ full_url }}</p>
 
 <!-- End Challenge 2 -->
 </section>
-{%endcomment%}
 
 
 
@@ -92,7 +94,7 @@ Then put out the image again.
 
 
 
-{%comment%}
+
 <section>
 <!--Challenge 3 -->
 
@@ -101,14 +103,20 @@ a.) Create an H1 element that displays the amount of items in the cart
 (You can test it by adding products to the cart and going back to the homepage)
 -->
   
-  <h1> Your cart contains X item(s) </h1>
+  <h1> Your cart contains {{ cart.item_count }} item(s) </h1>
   
   
 <!-- 
 b.) Use the "pluralize" filter to display the word "item" or "items" depending on the amount of items.
 -->
-  
 
+    <h1>Your cart contains {{ cart.item_count }}
+        {% if cart.item_count == 1 %} item
+        {% else %} items
+        {% endif %}
+    </h1>
+
+    <h1>Your cart contains {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}</h1>
   
 <!-- 
 c.) Write an if / else statement for the following cases:
@@ -139,7 +147,6 @@ d.) Rework your "if/else" statement and use "unless/else" tags instead
   
 <!-- End Challenge 3 -->
 </section>
-{%endcomment%}
 
 
 
