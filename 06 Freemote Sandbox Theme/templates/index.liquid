@@ -1,54 +1,46 @@
+{%  comment %}
 <section>
 <!--Challenge 1 -->
 
 {% assign greeting = "hello world!!!" %}
 
 
-<!-- 
-a.) Render the variable "greeting" in a h1-element  
+<!--
+a.) Render the variable "greeting" in a h1-element
 -->
 
     <h1>{{- greeting -}}</h1>
 
-<!-- 
-b.) Copy the h1-tag and use a Liquid filter to turn each letter into a capital letter. 
+<!--
+b.) Copy the h1-tag and use a Liquid filter to turn each letter into a capital letter.
 -->
 
     <h1>{{ greeting | upcase }}</h1>
 
-<!-- 
-c.) Copy the h1-tag again and chain another Liquid filter remove all the exclamation marks. 
+<!--
+c.) Copy the h1-tag again and chain another Liquid filter remove all the exclamation marks.
 -->
 
     <h1>{{ greeting | upcase | remove: "!" }}</h1>
 
 <!-- End Challenge 1 -->
 </section>
-
-
-
-
-
-
-
-
-
 <section>
-<!--Challenge 2 -->
+    <!--Challenge 2 -->
 
-<!-- Render a test image using the following variables (full url: http://lorempixel.com/400/200/sports) -->
-  
-{% assign base_url = "https://lorempixel.com" %}
+    <!-- Render a test image using the following variables (full url: http://lorempixel.com/400/200/sports) -->
 
-{% assign img_dimensions = "/400/200/" %}
+    {% assign base_url = "https://lorempixel.com" %}
 
-{%assign img_category ="sports" %}
-  
-  
-<!-- 
-a.) Find a way to build the URL back together and put it out to the frontend.
-Then also create a new variable containing the full image url.
--->
+    {% assign img_dimensions = "/400/200/" %}
+
+    {%assign img_category ="sports" %}
+
+
+    <!--
+    a.) Find a way to build the URL back together and put it out to the frontend.
+    Then also create a new variable containing the full image url.
+    -->
 
     {% assign full_url =  base_url | append: img_dimensions | append: img_category %}
 
@@ -62,53 +54,45 @@ Then also create a new variable containing the full image url.
     <img src="{{ full_url }}"></img>
 
 
-<!-- 
-c.) Copy the image tag and this time use a filter to replace the image category "sports" with "nature" 
--->
+    <!--
+    c.) Copy the image tag and this time use a filter to replace the image category "sports" with "nature"
+    -->
 
     <img src="{{ full_url | replace: "sports", "nature"  }}"></img>
     <img src="{{ full_url }}"></img>
 
-  
-<!-- 
-d.) Answer the following question:
-Did the replace filter permanently modify the variable itself or did it just affect the output once?
--->
-  
- {%  comment %} Just the output once {% endcomment %}
-  
-<!-- 
-e.) Find a way to change the value of the variable and set the category to "cats".
-Then put out the image again.
--->
+
+    <!--
+    d.) Answer the following question:
+    Did the replace filter permanently modify the variable itself or did it just affect the output once?
+    -->
+
+    {%  comment %} Just the output once {% endcomment %}
+
+    <!--
+    e.) Find a way to change the value of the variable and set the category to "cats".
+    Then put out the image again.
+    -->
 
     <img src="{{ full_url | replace: "sports", "cats"  }}"></img>
     <p>{{ full_url }}</p>
 
-<!-- End Challenge 2 -->
+    <!-- End Challenge 2 -->
 </section>
-
-
-
-
-
-
-
-
 <section>
-<!--Challenge 3 -->
+    <!--Challenge 3 -->
 
-<!-- 
-a.) Create an H1 element that displays the amount of items in the cart
-(You can test it by adding products to the cart and going back to the homepage)
--->
-  
-  <h1> Your cart contains {{ cart.item_count }} item(s) </h1>
-  
-  
-<!-- 
-b.) Use the "pluralize" filter to display the word "item" or "items" depending on the amount of items.
--->
+    <!--
+    a.) Create an H1 element that displays the amount of items in the cart
+    (You can test it by adding products to the cart and going back to the homepage)
+    -->
+
+    <h1> Your cart contains {{ cart.item_count }} item(s) </h1>
+
+
+    <!--
+    b.) Use the "pluralize" filter to display the word "item" or "items" depending on the amount of items.
+    -->
 
     <h1>Your cart contains {{ cart.item_count }}
         {% if cart.item_count == 1 %} item
@@ -117,102 +101,107 @@ b.) Use the "pluralize" filter to display the word "item" or "items" depending o
     </h1>
 
     <h1>Your cart contains {{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}</h1>
-  
-<!-- 
-c.) Write an if / else statement for the following cases:
 
-- Cart is empty → <h1>Your cart is currently empty</h1>
-- Cart contains items → <h1> Your cart contains X item(s) </h1>
+    <!--
+    c.) Write an if / else statement for the following cases:
 
-Hint: 
-In almost every programming language we use a single equal sign for assigning values
+    - Cart is empty → <h1>Your cart is currently empty</h1>
+    - Cart contains items → <h1> Your cart contains X item(s) </h1>
 
--> myVariable = 5
+    Hint:
+    In almost every programming language we use a single equal sign for assigning values
 
-and double equal sings to compare values
--> if myVariable == 5 ....
--->
+    -> myVariable = 5
 
-  
+    and double equal sings to compare values
+    -> if myVariable == 5 ....
+    -->
 
-  
+    <h1>
+        {% if cart.item_count == 0 %}
+            Your cart is currently empty
+        {% else %}
+            Your cart contains {{ cart.item_count }}
+            {{ cart.item_count | pluralize: 'item', 'items' }}
+        {% endif %}
+    </h1>
 
-<!-- 
-d.) Rework your "if/else" statement and use "unless/else" tags instead 
--->
-  
-  
-  
-  
-  
-<!-- End Challenge 3 -->
+
+    <!--
+    d.) Rework your "if/else" statement and use "unless/else" tags instead
+    -->
+
+    <h1>
+        {% unless cart.item_count > 0 %}
+            Your cart is currently empty
+        {% else %}
+            Your cart contains {{ cart.item_count }}
+            {{ cart.item_count | pluralize: 'item', 'items' }}
+        {% endunless %}
+    </h1>
+
+
+    <!-- End Challenge 3 -->
 </section>
-
-
-
-
-
-
-
-
-{%comment%}
 <section>
-<!--Challenge 4 -->
-  
-<!-- 
-a.) Put out "<h6> hello world </h6>" 10 Times without copy-pasting and by using a for tag
--->
-  
+    <!--Challenge 4 -->
 
-  
-  
-  <!-- 
-b.) Append the current iteration number to the output
+    <!--
+    a.) Put out "<h6> hello world </h6>" 10 Times without copy-pasting and by using a for tag
+    -->
 
-i.e:
-hello world 1
-hello world 2
-hello world 3
-...
--->
-  
-  
+    {% for i in (1..10) %}
+        <h6> hello world </h6 >
+    {% endfor %}
 
-  
-  <!-- 
-c.) Skip the 4th element using the "continue" keyword
--->
-  
 
-  
-  
-  <!-- 
-d.) Cancle the iteration after the 8th element using the "break" keyword.
--->
-  
-  
-  
-  
-<!-- End Challenge 4 -->
+    <!--
+  b.) Append the current iteration number to the output
+
+  i.e:
+  hello world 1
+  hello world 2
+  hello world 3
+  ...
+  -->
+
+
+    {% for i in (1..10) %}
+        <h6> hello world {{ i }}</h6>
+    {% endfor %}
+
+    <!--
+  c.) Skip the 4th element using the "continue" keyword
+  -->
+
+    {% for i in (1..10) %}
+        {% if i == 4 %} {% continue %} {% endif %}
+        <h6> hello world {{ i }}</h6>
+    {% endfor %}
+
+
+
+    <!--
+  d.) Cancel the iteration after the 8th element using the "break" keyword.
+  -->
+
+    {% for i in (1..10) %}
+        {% if i > 8 %} {% break %} {% endif %}
+        <h6>hello world {{ i }}</h6>
+    {% endfor %}
+
+
+
+    <!-- End Challenge 4 -->
 </section>
-{%endcomment%}
-
-
-
-
-
-
-
-{%comment%}
-
 <section>
-<!--Challenge 5 -->
- 
-<!-- 
+    <!--Challenge 5 -->
+
+    <!--
 
 Oftentimes for-loops are used to iterate over the elements in an "array".
 
-You can think of an "array" as if it was a table / or a simple list containing data. 
+You can think of an "array" as if it was a table / or a simple list containing data.
 
 For example an array of four different fruits could look like:
 
@@ -225,7 +214,7 @@ For example an array of four different fruits could look like:
 3 → bananas
 
 
-(the first index usually starts with 0, because historically it wa more memory efficient than starting with a 1)
+(the first index usually starts with 0, because historically it was more memory efficient than starting with a 1)
 
 
 In liquid, we can't just create arrays, but we encounter them in several of the liquid objects.
@@ -249,266 +238,308 @@ It works by using the split filter as follows:
 
 {% assign fruits_array = fruits_string | split: ',' %}
 
--->  
-  
-  
-<!-- 
-a.) Put out the thrid element of our fruits array "lemons" in a h6 tag
--->
-  
-
-  
-  
-  
-  <!-- 
-b.) display the array size (number of elements in it).
-
--->
-  
-  
-  
-  
-  <!-- 
-c.) write a for loop that puts out each of the array elements in a seperate <h6> element. Use the code below as a starting point.
 -->
 
-  
-{%comment%}
-  
-  {% for i in (0..X) %}
 
-  <h6> X </h6>
+    <!--
+    a.) Put out the third element of our fruits array "lemons" in a h6 tag
+    -->
 
-  {% endfor%}
-  
-{%endcomment%}
-  
-  
-  
-  <!-- 
-d.) Unfortunately the implementation above is not very dynamic.
-
-If we add another fruit to the end of our array. It won't be displayed.
-
-Therefore we want to create a new variable that dynamically figures out the upper limit and then use it in out forloop.
--->
-  
-
-  {%comment%}
-  {% assign fruits_string = "apples,oranges,lemons,bananas,strawberries" %}
-
-  {% assign fruits_array = fruits_string | split: ',' %}
+    <h6>{{ fruits_array[2] }}</h6>
 
 
 
-  {% assign array_limit = X %}
+    <!--
+  b.) display the array size (number of elements in it).
 
-  {% for i in (0..X) %}
+  -->
 
-  <h6> X </h6>
+    <p>{{ fruits_array.size }}</p>
 
-  {% endfor %}
-  {%endcomment%}
-  
 
-  
-  
-  <!-- 
-e.) The dynamic example already works a lot better, but there's one way, that's a little handier.
+    <!--
+  c.) write a for loop that puts out each of the array elements in a seperate <h6> element. Use the code below as a starting point.
+  -->
 
-The most common way to iterate over arrays is by using a "for-each loop".
-
-Instead of a numerical counter, we can directly reference the element in an array:
+    {% for i in (0..4) %}
+        <h6>{{ fruits_array[i] }}</h6>
+    {% endfor %}
 
 
 
- for element in array
-
-	→ do something with element
-
- endfor
-
-Or in plain English: "for each element in our array → do something with the current element" 
-
-Please fill in the blanks to put out each fruit into an <h6> tag:
--->
-  
 
 
-  {% assign fruits_string = "apples,oranges,lemons,bananas,strawberries,abc" %}
+    <!--
+  d.) Unfortunately the implementation above is not very dynamic.
 
-  {% assign fruits_array = fruits_string | split: ',' %}
-  
-  
+  If we add another fruit to the end of our array. It won't be displayed.
 
- 
-  {%comment%}
-  
-  
-  {% for fruit in fruits_array %}
+  Therefore we want to create a new variable that dynamically figures out the upper limit and then use it in out forloop.
+  -->
 
-  <h6> X </h6>
 
-  {% endfor%}
-  
-  
-  {%endcomment%}
+    {% assign fruits_string = "apples,oranges,lemons,bananas,strawberries" %}
 
-  
-  
-  <!-- 
-f.) find a way to put out the number (index) of the current iteration in our for-each-loop.
+    {% assign fruits_array = fruits_string | split: ',' %}
 
-hint: You can either introduce a counter variable, or research the liquid "forloop index".
 
--->
-  
 
- 
-  
-  
-<!-- End Challenge 5 -->
+    {% assign array_limit = fruits_array.size %}
+
+    {% for i in (0..array_limit) %}
+
+    <h6> {{ fruits_array[i]  }} </h6>
+
+    {% endfor %}
+
+
+
+
+
+    <!--
+  e.) The dynamic example already works a lot better, but there's one way, that's a little handier.
+
+  The most common way to iterate over arrays is by using a "for-each loop".
+
+  Instead of a numerical counter, we can directly reference the element in an array:
+
+
+
+   for element in array
+
+      → do something with element
+
+   endfor
+
+  Or in plain English: "for each element in our array → do something with the current element"
+
+  Please fill in the blanks to put out each fruit into an <h6> tag:
+  -->
+
+
+
+    {% assign fruits_string = "apples,oranges,lemons,bananas,strawberries,abc" %}
+
+    {% assign fruits_array = fruits_string | split: ',' %}
+
+
+
+
+
+
+
+    {% for fruit in fruits_array %}
+
+    <h6> {{ fruit }} </h6>
+
+    {% endfor%}
+
+
+
+
+    <!--
+  f.) find a way to put out the number (index) of the current iteration in our for-each-loop.
+
+  hint: You can either introduce a counter variable, or research the liquid "forloop index".
+
+  -->
+
+{% for fruit in fruits_array %}
+    <h6>{{ forloop.index }} {{ fruit }}</h6>
+{% endfor %}
+
+
+    <!-- End Challenge 5 -->
 </section>
-{%endcomment%}
-
-
-
-
-
-
-
-
-{%comment%}
 <section>
-<!-- Challenge 6 -->
+    <!-- Challenge 6 -->
 
-<!-- 
-a.)  Create an <ul> element, that holds all the existing store collection titles as individual list items 
--->
-  
+    <!--
+    a.)  Create an <ul> element, that holds all the existing store collection titles as individual list items
+    -->
+    <ul>
+        {%  for collection in collections %}
+            <li>Sols nom: {{ collection.title }}</li>
+        {% endfor %}
+    </ul>
 
-  
-<!-- 
-b.)  Instead of just displying the title, each of the elements should now be a clickable link and point to the collection
--->
-  
-  
+    <!--
+    b.)  Instead of just displaying the title, each of the elements should now be a clickable link and point to the collection
+    -->
 
-
-<!-- 
-c.) One of the Store collections is called "Home Page" (if you don't have that please go ahead to create it first).
-
-This collection is only meant to be shown as a featured collection on the homepage, but shouldn't be browsed. 
-
-Find a way to remove it from our list of collections / filter it out.
--->
-  
+    <ul>
+        {% for collection in collections %}
+            <li><a href="{{ collection.url }}">Enllaç: {{ collection.title }}</a></li>
+        {% endfor %}
+    </ul>
 
 
+    <!--
+    c.) One of the Store collections is called "Home Page" (if you don't have that please go ahead to create it first).
 
-<!-- End Challenge 6 -->
+    This collection is only meant to be shown as a featured collection on the homepage, but shouldn't be browsed.
+
+    Find a way to remove it from our list of collections / filter it out.
+    -->
+    <ul>
+        {% for collection in collections %}
+            {% if collection.title == 'Home page' %} {% continue %} {% endif %}
+                <li>Home page filtrada: {{ collection.title }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+    <!-- End Challenge 6 -->
 </section>
-
-{%endcomment%}
-
-
-
-
-
-
-{%comment%}
 <section>
-<!-- Challenge 7 -->
-  
-<!-- 
-Unlike with collections, we can't just loop over all the products in a store.
+    <!-- Challenge 7 -->
 
-Even though there is one global object that's called "all_products", 
+    <!--
+    Unlike with collections, we can't just loop over all the products in a store.
 
-it only helps to access individual products based on their handle. 
-→ all_products["sunglasses-xyz"] for instance.
+    Even though there is one global object that's called "all_products",
 
-
-Every store has a hidden collection called "all". As the name suggests, this collection also contains a list of all products. 
-
-You can access the collection object in the following way:
-
- { { collections["all"] }}
-
--->
-  
-
-<!-- 
-a.)  Create an <ul> element with a css class of "product-list", that holds all the existing product titles as individual list items. 
-
-Within the list items, wrap the title into a h4-element
-
--->
-  
+    it only helps to access individual products based on their handle.
+    → all_products["sunglasses-xyz"] for instance.
 
 
-<!--
-b.) Before putting out a product title check the availability of the product.
+    Every store has a hidden collection called "all".
+    As the name suggests, this collection also contains a list of all products.
 
-If it's unavailable, don't show it.
+    You can access the collection object in the following way:
 
-(you can test this by editing one of the products -> check the checkbox to track the quantity -> set the quantity to 0 -> this product is now unavailable)
--->
-
-
-  
-<!--
-c.) Display the product image (featured image / first image) above the title, but still within the list items.
-
-The images should be rendered with a 200px width.
-
-Hint: You will need to use an image url filter.
-
---> 
-
-  
-
-  
-  
- 
-<!--
-d.) Add a button to view the product page below the title.
-
-You can use an a-tag with the css class "btn" as button.
-
--->
-  
-
-  
-  
-  
-<!--
-e.) Add a second button, to immediatley add the product to the cart.
-
-Hint:
-The easiest way of adding a product to the cart is by clicking a link that points to:
-/cart/add?id=1234
-
-Hereby the ID referes to the corresponding variant ID.
-It's important to note that the variant-ID is different from the overall product-ID.
-
-Let me explain:
-Every product has at least one variant. 
-Even if we don't have further colors or size-options to choose from.
-
-In that case, the hidden variant represents the product itself, but the variant-ID is still different form the product-ID.
-
-You may want to take a look at the product object and a property called "first_available_variant".
--->  
-  
-  
+    -->
 
 
-<!-- End Challenge 7 -->
+    <!--
+    a.)  Create an <ul> element with a css class of "product-list", that holds all the existing product titles as individual list items.
+
+    Within the list items, wrap the title into a h4-element
+
+    -->
+    <h1>Challenge 7, part a</h1>
+    <hr style="border-bottom: 2px solid black;">
+    <ul class="product-list">
+        {% for product in collections.all.products %}
+            <li><h4>{{ product.title }}</h4></li>
+        {% endfor %}
+    </ul>
+
+
+
+
+    <!--
+    b.) Before putting out a product title check the availability of the product.
+
+    If it's unavailable, don't show it.
+
+    (you can test this by editing one of the products -> check the checkbox to track the quantity -> set the quantity to 0 -> this product is now unavailable)
+    -->
+
+    <h1>Challenge 7, part b</h1>
+    <hr style="border-bottom: 2px solid black;">
+    <ul class="product-list">
+        {% for product in collections.all.products %}
+            {% if product.available %}
+                <li><h4>
+                    {{ product.title }}
+                </h4></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <!--
+    c.) Display the product image (featured image / first image) above the title, but still within the list items.
+
+    The images should be rendered with a 200px width.
+
+    Hint: You will need to use an image url filter.
+
+    -->
+    <h1>Challenge 7, part c</h1>
+    <hr style="border-bottom: 2px solid black;">
+    <ul class="product-list">
+        {% for product in collections.all.products %}
+            <li>
+                {% if product.available %}
+                    <div>
+                        <img src="{{ product |  img_url: '200x' }}" alt="{{ product.title }}">
+                    </div>
+                    <h4>
+                        {{ product.title }}
+                    </h4></li>
+                {% endif %}
+        {% endfor %}
+    </ul>
+
+    <!--
+    d.) Add a button to view the product page below the title.
+
+    You can use an a-tag with the css class "btn" as button.
+
+    -->
+    <h1>Challenge 7, part d</h1>
+    <hr style="border-bottom: 2px solid black;">
+    <ul class="product-list">
+        {% for product in collections.all.products %}
+            <li>
+            {% if product.available %}
+                <div>
+                    <img src="{{ product |  img_url: '200x' }}" alt="{{ product.title }}">
+                </div>
+                <h4>
+                    {{ product.title }}
+                </h4>
+                <a href="{{ product.url }}" class="btn">Check product</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+    <!--
+    e.) Add a second button, to immediatley add the product to the cart.
+
+    Hint:
+    The easiest way of adding a product to the cart is by clicking a link that points to:
+    /cart/add?id=1234
+
+    Hereby the ID referes to the corresponding variant ID.
+    It's important to note that the variant-ID is different from the overall product-ID.
+
+    Let me explain:
+    Every product has at least one variant.
+    Even if we don't have further colors or size-options to choose from.
+
+    In that case, the hidden variant represents the product itself, but the variant-ID is still different form the product-ID.
+
+    You may want to take a look at the product object and a property called "first_available_variant".
+    -->
+
+    <h1>Challenge 7e</h1>
+    <hr style="border-bottom: 2px solid black;">
+    <ul class="product-list">
+        {% for product in collections.all.products %}
+            <li>
+            {% if product.available %}
+                <div>
+                    <img src="{{ product |  img_url: '200x' }}" alt="{{ product.title }}">
+                </div>
+                <h4>
+                    {{ product.title }}
+                </h4>
+                <a href="{{ product.url }}" class="btn">Check product</a>
+                <a href="/cart/add?id={{ product.first_available_variant.id }}" class="btn">Add product</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+
+    <!-- End Challenge 7 -->
 </section>
-{%endcomment%}
-
-
+{% endcomment %}
 
 
 
@@ -517,7 +548,7 @@ You may want to take a look at the product object and a property called "first_a
 <section>
 <!-- Challenge 8 -->
 
-<!-- 
+<!--
 I've been trying to implement a new feature on the store but couldn't get it to work.
 Could you take a look at my script and try to get it to work?
 
@@ -533,55 +564,55 @@ When I had it showing, the url wasn't correct either.
 
 Hope you can help me to fix this.
  -->
-   
+
 <!--
 For this challenge we need a bit of fictional product data (you can ignore this).
   {% assign fictional_product_title = "Yellow Dress" %}
   {% assign fictional_product_image = "http://lorempixel.com/124/125/fashion/1/" %}
-  
+
   {% assign fictional_tags_string = "women,summer,instagram_link:https://www.instagram.com/shopify/,sale,new_arivals"%}
   {% assign fictional_product_tags = fictional_tags_string | split:',' %}
 -->
-  
 
-  
-  
+
+
+
   {% assign has_instagram_link = false %}
-  
-  
+
+
   {% for tag in fictional_product_tags %}
-  
- 
+
+
     {% if tag == 'instagram_link' %}
-	
+
       {% assign has_instagram_link = true %}
   	  {% assign link = tag | split: ':'  %}
-  	   
+
     {% endif%}
-  
+
   {% endfor %}
-  
-  
-  
-  
+
+
+
+
   <div class="product-gallery">
-  
+
   <img src="{{fictional_product_image}}" />
   <h6>{{fictional_product_title}}</h6>
-  
-    
-   
+
+
+
   {% if has_instagram_link %}
   <a class="btn" href="{{link}}"> See on Instagram </a>
   {% endif %}
-  
+
   </div>
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 <!-- End Challenge 8 -->
 </section>
 {%endcomment%}
@@ -599,11 +630,11 @@ For this challenge we need a bit of fictional product data (you can ignore this)
 <section>
 <!-- Challenge 9 -->
 
- 
-<!-- 
+
+<!--
 a.) Down below you can find a forloop that puts out 15 hello worlds.
-	
-	These tags should now have alternating colors. 
+
+	These tags should now have alternating colors.
 	1. red
 	2. blue
 	3. green
@@ -628,15 +659,15 @@ Hint: Cycle-Tags
 {% endfor %}
 {%endcomment%}
 
-  
-  
-  
+
+
+
 <!--
-b.) 
+b.)
 
 (NOTE:PLS MAKE SURE TO VIEW THE MARKUP DOWN BELOW IN DESKTOP MODE / WIDTH)
 
-More complex Markup may seem scary at first, but is actually not that different. 
+More complex Markup may seem scary at first, but is actually not that different.
 
 The Markup down below puts out 3 images with text next to them. (Uncomment to see)
 
@@ -659,7 +690,7 @@ Use the Cycle tag to either add nothing, or the class "feature-row--reverse", de
 
 {%comment%}
 {% for  i in (1..3) %}
-  
+
 <div class="shopify-section index-section">
     <div class="page-width">
         <div class="feature-row">
@@ -674,7 +705,7 @@ Use the Cycle tag to either add nothing, or the class "feature-row--reverse", de
  	                       {% elsif i == 3%}
                       	   src="//cdn.shopify.com/s/files/1/0514/8239/4791/files/young-female-models-denim_925x_2bf31250-01cc-48a4-b19d-e47e41555b6b_540x.jpg?v=1611246386"
                       	   {% endif %}
-                          >   		
+                          >
                     </div>
                 </div>
             </div>
@@ -682,9 +713,9 @@ Use the Cycle tag to either add nothing, or the class "feature-row--reverse", de
                 <h3 class="h3">Text on the {%if i == 1%}right {%elsif i == 2%}left {%elsif i == 3%} right {%endif%} </h3>
                 <div class="rte rte-setting featured-row__subtext">
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                      Praesent elementum urna nisl, insuscipit odio pulvinar vel. Aliquam hendrerit, nibh tempus efficitur pulvinar, 
-                      velit turpis accumsan augue, id semper mauris mi ac massa. 
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Praesent elementum urna nisl, insuscipit odio pulvinar vel. Aliquam hendrerit, nibh tempus efficitur pulvinar,
+                      velit turpis accumsan augue, id semper mauris mi ac massa.
                       Nunc accumsan mi vel felis faucibus, sit ametcon sectetur nulla varius. Donec et ultricies nunc.
                   </p>
                 </div>
@@ -699,11 +730,11 @@ Use the Cycle tag to either add nothing, or the class "feature-row--reverse", de
 <!-- End Challenge 9 -->
 </section>
 {%endcomment%}
-  
-  
-  
-  
-  
+
+
+
+
+
 
 
 
@@ -711,7 +742,7 @@ Use the Cycle tag to either add nothing, or the class "feature-row--reverse", de
 {%comment%}
 <section>
 <!-- Challenge 10 -->
-  
+
 <!--
 Lastly I'd like to introduce you to switch statements.
 They basically work like if statements but have a slightly different syntax.
@@ -733,10 +764,10 @@ Test your switch statement, by removing the comment tags around the assignments 
 {%comment%} {% assign element-type = "h2" %} {%endcomment%}
 -->
 
-  
-  
 
-  
+
+
+
 <!-- Challenge 10 -->
  </section>
 {%endcomment%}
