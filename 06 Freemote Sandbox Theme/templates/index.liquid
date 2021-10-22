@@ -1,4 +1,3 @@
-{%  comment %}
 <section>
 <!--Challenge 1 -->
 
@@ -539,12 +538,6 @@ It works by using the split filter as follows:
 
     <!-- End Challenge 7 -->
 </section>
-{% endcomment %}
-
-
-
-
-{%comment%}
 <section>
 <!-- Challenge 8 -->
 
@@ -579,17 +572,11 @@ For this challenge we need a bit of fictional product data (you can ignore this)
 
   {% assign has_instagram_link = false %}
 
-
   {% for tag in fictional_product_tags %}
-
-
-    {% if tag == 'instagram_link' %}
-
+    {% if tag contains 'instagram_link' %}
       {% assign has_instagram_link = true %}
-  	  {% assign link = tag | split: ':'  %}
-
+      {% assign link = tag | slice: 15, 1000 %}
     {% endif%}
-
   {% endfor %}
 
 
@@ -615,18 +602,6 @@ For this challenge we need a bit of fictional product data (you can ignore this)
 
 <!-- End Challenge 8 -->
 </section>
-{%endcomment%}
-
-
-
-
-
-
-
-
-
-
-{%comment%}
 <section>
 <!-- Challenge 9 -->
 
@@ -650,14 +625,13 @@ Hint: Cycle-Tags
 
 -->
 
-{%comment%}
+
 {% for i in (1..15) %}
 
-
-<h6 class="">Hello World</h6>
+<h6 class="{% cycle 'red', 'blue', 'green' %}">Hello World</h6>
 
 {% endfor %}
-{%endcomment%}
+
 
 
 
@@ -688,12 +662,12 @@ Use the Cycle tag to either add nothing, or the class "feature-row--reverse", de
 -->
 
 
-{%comment%}
+
 {% for  i in (1..3) %}
 
 <div class="shopify-section index-section">
     <div class="page-width">
-        <div class="feature-row">
+        <div class="feature-row {% cycle '', 'feature-row--reverse' %}">
             <div class="feature-row__item">
                 <div class="feature-row__image-wrapper js">
                     <div style="padding-top:66.640625%;">
@@ -724,22 +698,12 @@ Use the Cycle tag to either add nothing, or the class "feature-row--reverse", de
     </div>
 </div>
 {% endfor %}
-{%endcomment%}
+
 
 
 <!-- End Challenge 9 -->
 </section>
-{%endcomment%}
 
-
-
-
-
-
-
-
-
-{%comment%}
 <section>
 <!-- Challenge 10 -->
 
@@ -759,15 +723,21 @@ When it is "h2" put out "<h2>You're ready for the first projects! :-)</h2>
 
 Test your switch statement, by removing the comment tags around the assignments one after the other.
 
-{% assign element-type = "h6" %}
+{% assign element-type = "h2" %}
 {%comment%} {% assign element-type = "h4" %} {%endcomment%}
 {%comment%} {% assign element-type = "h2" %} {%endcomment%}
 -->
 
-
+{% case element-type %}
+  {%  when 'h6' %}
+    <h6>You can do this!</h6>
+  {%  when 'h4' %}
+    <h4>You are a Liquid pro!</h4>
+  {%  when 'h2' %}
+    <h2>You're ready for the first projects!</h2>
+{% endcase %}
 
 
 
 <!-- Challenge 10 -->
  </section>
-{%endcomment%}
