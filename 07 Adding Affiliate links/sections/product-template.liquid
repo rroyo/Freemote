@@ -694,3 +694,40 @@
   ]
 }
 {% endschema %}
+
+{% comment %} YSP - Affiliate Link edit 2021-10-23 {% endcomment %}
+{% assign affiliate_link = false %}
+
+{% for tag in product.tags %}
+  {% assign tag_lower = tag | lowercase %}
+
+  {% if tag_lower contains 'affiliate' %}
+    {% assign tag_split = tag | split: '_' %}
+    {% assign aff_url = tag_split[1] %}
+    {% assign affiliate_link = true %}
+  {% endif %}
+{% endfor %}
+
+{% if affiliate_link %}
+  <script>
+    const product =  document.querySelector('.product-single__meta')
+    const product_children = product.children;
+
+    for (let i = 1; i < product_children.length; i++) {
+      product_children[i].style.display = "none";
+    }
+
+    const aff_div = document.createElement('div');
+    aff_div.className = 'shopify-payment-button';
+
+    const aff_link = document.createElement('a');
+    aff_link.href = "{{ aff_url }}";
+
+    const aff_button = document.createElement('button');
+    aff_button.className = 'shopify-payment-button__button shopify-payment-button__button--unbranded';
+    aff_button.innerHTML = 'See on Amazon';
+
+    product.appendChild(aff_div).appendChild(aff_link).appendChild(aff_button);
+  </script>
+{% endif %}
+{% comment %} YSP - Affiliate Link edit 2021-10-23 {% endcomment %}
