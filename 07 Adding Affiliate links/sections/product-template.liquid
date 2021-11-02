@@ -702,8 +702,7 @@
     {% assign tag_lower = tag | lowercase %}
 
     {% if tag_lower contains 'affiliate' %}
-      {% assign tag_split = tag | split: '_' %}
-      {% assign aff_url = tag_split[1] %}
+      {% assign aff_url = tag | split: '_' |  last %}
       {% assign affiliate_link = true %}
     {% endif %}
   {% endfor %}
