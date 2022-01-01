@@ -1,0 +1,47 @@
+.container {
+    width: 80%;
+    height: 50%;
+    border: 1px solid grey;
+    margin: 0 auto;
+}
+
+.selector {
+    display: flex;
+    border-bottom: 1px solid grey;
+    background-color: #f1f1f1;
+}
+
+.tab {
+    padding: 10px;
+}
+
+.tab:hover {
+    cursor: pointer;
+    background-color: darkgrey;
+}
+
+.content {
+    padding: 10px;
+}
+
+.content-body {
+    display: none;
+}
+
+.show-active {
+    display: block;
+    animation: fade 1s;
+}
+
+.tab-active {
+    background-color: darkgrey;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
