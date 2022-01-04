@@ -17,6 +17,17 @@ h1, h2 {
     margin: 20px 0;
 }
 
+.blur {
+    filter: blur(5px);
+    user-select: none;
+    pointer-events: none;
+}
+.hidden {
+    display: none;
+}
+
+/* Don't change the order of the next two classes
+   .question and .visible */
 .question {
     display: none;
 }
@@ -25,18 +36,8 @@ h1, h2 {
     display: block;
 }
 
-.hide {
-    display: none;
-}
-
 .question-label {
     margin: 20px 0;
-}
-
-.blur {
-    filter: blur(5px);
-    user-select: none;
-    pointer-events: none;
 }
 
 .answers-block {
@@ -94,20 +95,46 @@ label {
 
 .next {
     position: absolute;
-    right: 25%;
-    transform: translateX(-50%);
+    right: 220px;
 }
 
 .back {
     position: absolute;
-    left: 25%;
-    transform: translateX(50%);
+    left: 225px;
+}
+
+.error {
+    width: 100px;
+    position: absolute;
+    right: 225px;
+    top: -35px;
+}
+
+.error-triangle {
+    display: block;
+    position: absolute;
+    right: 40px;
+    top: 22px;
+    background-color: indianred;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+.error-text {
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    background-color: indianred;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .finish {
     position: absolute;
-    right: 25%;
-    transform: translateX(-50%);
+    right: 220px;
     color: white;
     background-color: #3f6c9b;
 }

@@ -20,13 +20,14 @@ const questions = [{
 let activeQuestion = 0;
 let quizStarted = false;
 let totalTime = 0;
-let timer = null;
+let timer, errorTimer = null;
 const questionsBlock = document.querySelector(".questions-block");
 const timerText = document.querySelector(".timer");
 const backButton = document.querySelector(".back");
 const nextButton = document.querySelector(".next");
 const startButton = document.querySelector(".start");
 const finishButton = document.querySelector(".finish");
+const errorMessage = document.querySelector(".error");
 
 // Set quiz title
 const quizTitle = document.querySelector(".quiz-title");
@@ -69,24 +70,24 @@ function setCurrentQuestionVisibility(currentQuestion) {
   questionsCounterText.textContent = `Question ${ currentQuestion + 1 } of ${ numQuestions }`;
 
   if (!quizStarted) {
-    startButton.classList.remove("hide");
-    nextButton.classList.add("hide");
-    backButton.classList.add("hide");
-    finishButton.classList.add("hide");
+    startButton.classList.remove("hidden");
+    nextButton.classList.add("hidden");
+    backButton.classList.add("hidden");
+    finishButton.classList.add("hidden");
   } else {
     if (currentQuestion === 0) {
-      startButton.classList.add("hide");
-      backButton.classList.add("hide");
-      nextButton.classList.remove("hide");
-      finishButton.classList.add("hide");
+      startButton.classList.add("hidden");
+      backButton.classList.add("hidden");
+      nextButton.classList.remove("hidden");
+      finishButton.classList.add("hidden");
     } else if (currentQuestion === numQuestions - 1) {
-      backButton.classList.remove("hide");
-      nextButton.classList.add("hide");
-      finishButton.classList.remove("hide");
+      backButton.classList.remove("hidden");
+      nextButton.classList.add("hidden");
+      finishButton.classList.remove("hidden");
     } else {
-      backButton.classList.remove("hide");
-      nextButton.classList.remove("hide");
-      finishButton.classList.add("hide");
+      backButton.classList.remove("hidden");
+      nextButton.classList.remove("hidden");
+      finishButton.classList.add("hidden");
     }
   }
 }
@@ -98,11 +99,15 @@ function updateTime() {
   timerText.textContent = `${minutes}:${seconds}`;
 }
 
-function quiestionIsAnswered() {
+function questionIsAnswered() {
   const domAnswers = document.querySelectorAll(`#question${activeQuestion} .answer`);
   for (const domAnswer of domAnswers) {
     if (domAnswer.checked) return true;
   }
+
+  errorMessage.classList.remove("hidden");
+  clearInterval(errorTimer);
+  errorTimer = setInterval(() => errorMessage.classList.add("hidden"), 1500);
   return false;
 }
 
@@ -115,7 +120,7 @@ backButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
-  if (quiestionIsAnswered()) {
+  if (questionIsAnswered()) {
     activeQuestion++;
     setCurrentQuestionVisibility(activeQuestion);
   }
@@ -148,11 +153,11 @@ function showResults(){
 }
 
 finishButton.addEventListener('click',() => {
-  if (quiestionIsAnswered()) {
+  if (questionIsAnswered()) {
     clearInterval(timer);
-    backButton.classList.add("hide");
-    finishButton.classList.add("hide");
-    timerText.classList.add("hide");
+    backButton.classList.add("hidden");
+    finishButton.classList.add("hidden");
+    timerText.classList.add("hidden");
     showResults();
   }
 });
