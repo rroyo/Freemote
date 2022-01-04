@@ -1,0 +1,19 @@
+Title: eCommerce Quiz
+
+Question 1: Which of the following is not a real eCommerce platform?
+- Shopify
+- WooCommerce
+- ShopCommerce [correct]
+- BigCommerce
+
+Question 2: If Shopify is so good, why are Shopify developers necessary?
+- To save time on things like store setups and migrations
+- To extend the limited design options and functionalities of themes with custom code
+- To provide support with a deep understanding of how the platform works and what its limitations are
+- All the above [correct]
+
+Question 3: Which of the following is true about Shopify developers?
+- They are paid extremely well
+- There is a high demand for them
+- They need to know web development, the platform itself, and the liquid template language
+- All the above [correct]
