@@ -25,12 +25,18 @@ h1, h2 {
     display: block;
 }
 
-.hide-button {
+.hide {
     display: none;
 }
 
 .question-label {
     margin: 20px 0;
+}
+
+.blur {
+    filter: blur(5px);
+    user-select: none;
+    pointer-events: none;
 }
 
 .answers-block {
@@ -118,4 +124,9 @@ label {
 .back:active, .next:active {
     background-color: rgb(170, 114, 255);
     box-shadow: none;
+}
+
+.results {
+    margin: 0 auto;
+    font-size: 1.3rem;
 }

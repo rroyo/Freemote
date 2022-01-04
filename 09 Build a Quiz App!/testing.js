@@ -17,13 +17,11 @@ const questions = [{
   },
 ];
 
-const correctAnswers = questions.forEach(question => question.correct);
-const userAnswers = [];
-
 let activeQuestion = 0;
 let quizStarted = false;
 let totalTime = 0;
 let timer = null;
+const questionsBlock = document.querySelector(".questions-block");
 const timerText = document.querySelector(".timer");
 const backButton = document.querySelector(".back");
 const nextButton = document.querySelector(".next");
@@ -60,7 +58,7 @@ questions.forEach((question, questionNum) => {
   `;
 });
 
-document.querySelector(".questions-block").innerHTML = questionsHTML;
+questionsBlock.innerHTML = questionsHTML;
 
 // Visible question
 const questionsDOM = document.querySelectorAll(".question");
@@ -71,24 +69,24 @@ function setCurrentQuestionVisibility(currentQuestion) {
   questionsCounterText.textContent = `Question ${ currentQuestion + 1 } of ${ numQuestions }`;
 
   if (!quizStarted) {
-    startButton.classList.remove("hide-button");
-    nextButton.classList.add("hide-button");
-    backButton.classList.add("hide-button");
-    finishButton.classList.add("hide-button");
+    startButton.classList.remove("hide");
+    nextButton.classList.add("hide");
+    backButton.classList.add("hide");
+    finishButton.classList.add("hide");
   } else {
     if (currentQuestion === 0) {
-      startButton.classList.add("hide-button");
-      backButton.classList.add("hide-button");
-      nextButton.classList.remove("hide-button");
-      finishButton.classList.add("hide-button");
+      startButton.classList.add("hide");
+      backButton.classList.add("hide");
+      nextButton.classList.remove("hide");
+      finishButton.classList.add("hide");
     } else if (currentQuestion === numQuestions - 1) {
-      backButton.classList.remove("hide-button");
-      nextButton.classList.add("hide-button");
-      finishButton.classList.remove("hide-button");
+      backButton.classList.remove("hide");
+      nextButton.classList.add("hide");
+      finishButton.classList.remove("hide");
     } else {
-      backButton.classList.remove("hide-button");
-      nextButton.classList.remove("hide-button");
-      finishButton.classList.add("hide-button");
+      backButton.classList.remove("hide");
+      nextButton.classList.remove("hide");
+      finishButton.classList.add("hide");
     }
   }
 }
@@ -100,6 +98,14 @@ function updateTime() {
   timerText.textContent = `${minutes}:${seconds}`;
 }
 
+function quiestionIsAnswered() {
+  const domAnswers = document.querySelectorAll(`#question${activeQuestion} .answer`);
+  for (const domAnswer of domAnswers) {
+    if (domAnswer.checked) return true;
+  }
+  return false;
+}
+
 setCurrentQuestionVisibility(activeQuestion);
 
 // Buttons
@@ -109,23 +115,44 @@ backButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
-  activeQuestion++;
-  setCurrentQuestionVisibility(activeQuestion);
+  if (quiestionIsAnswered()) {
+    activeQuestion++;
+    setCurrentQuestionVisibility(activeQuestion);
+  }
 });
 
 startButton.addEventListener('click', () => {
   quizStarted = true;
+  questionsBlock.classList.remove("blur");
   setCurrentQuestionVisibility(activeQuestion);
   timer =  setInterval(updateTime, 1000);
 });
 
+// Show results
+function showResults(){
+  const correctAnswers = [];
+  const userAnswers = [];
+  questions.forEach(question => correctAnswers.push(question.correct));
+
+  const answeredQuestions = document.querySelectorAll(".question");
+  for (const question of answeredQuestions) {
+    const answers = question.querySelectorAll(".answer");
+    for (const answer of answers) {
+      if (answer.checked) userAnswers.push(parseInt(answer.value));
+    }
+  }
+
+  const correctResults = correctAnswers.filter((correct, index) => correct === userAnswers[index]);
+  const numCorrect = correctResults.length;
+  questionsBlock.innerHTML = `<p class="results">You've got ${numCorrect} correct ${numCorrect === 1 ? 'answer' : 'answers'} out of ${numQuestions}</p>`;
+}
+
 finishButton.addEventListener('click',() => {
-  clearInterval(timer);
+  if (quiestionIsAnswered()) {
+    clearInterval(timer);
+    backButton.classList.add("hide");
+    finishButton.classList.add("hide");
+    timerText.classList.add("hide");
+    showResults();
+  }
 });
-
-// aclareix com enrregistrar totes les respostes de l'usuari
-
-
-
-
-
