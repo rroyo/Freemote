@@ -1,4 +1,4 @@
-// Init
+// Globals
 const title = "eCommerce Quiz";
 const questions = [{
     question: "Which of the following is not a real eCommerce platform?",
@@ -28,43 +28,50 @@ const nextButton = document.querySelector(".next");
 const startButton = document.querySelector(".start");
 const finishButton = document.querySelector(".finish");
 const errorMessage = document.querySelector(".error");
-
-// Set quiz title
-const quizTitle = document.querySelector(".quiz-title");
-quizTitle.textContent = title;
-
-// Set questions counter
 const questionsCounterText = document.querySelector(".questions-counter");
 const numQuestions = questions.length;
-questionsCounterText.textContent = `Question 1 of ${numQuestions}`;
+let questionsDOM = null;
 
-// Set questions + answers
-let questionsHTML = ``;
+// Functions
+function init() {
+  // Set quiz title
+  const quizTitle = document.querySelector(".quiz-title");
+  quizTitle.textContent = title;
 
-questions.forEach((question, questionNum) => {
-  //answers
-  let answersHTML = ``;
-  question.answers.forEach((answer,answerNum) => {
-    answersHTML += `<label><input type="radio" class="answer" name="question${ questionNum }" value="${ answerNum }">${ answer }</label>`;
-  });
+  // Set questions counter
+  questionsCounterText.textContent = `Question 1 of ${numQuestions}`;
 
-  //question + answers
-  questionsHTML += `
+  // Set questions + answers
+  let questionsHTML = ``;
+
+  questions.forEach((question, questionNum) => {
+    let answersHTML = ``;
+    question.answers.forEach((answer,answerNum) => {
+      answersHTML += `<label>
+                        <input type="radio"
+                               class="answer"
+                               name="question${ questionNum }"
+                               value="${ answerNum }">
+                        ${ answer }
+                      </label>`;
+    });
+
+    //question + answers
+    questionsHTML += `
     <div class="question" id="question${ questionNum }">
       <p class="question-label">${ question.question }</p>
       <div class="answers-block">
         ${ answersHTML }
       </div>
-    </div>
-  `;
-});
+    </div>`;
+  });
 
-questionsBlock.innerHTML = questionsHTML;
-
-// Visible question
-const questionsDOM = document.querySelectorAll(".question");
+  questionsBlock.innerHTML = questionsHTML;
+  setCurrentQuestionVisibility(activeQuestion);
+}
 
 function setCurrentQuestionVisibility(currentQuestion) {
+  questionsDOM = document.querySelectorAll(".question");
   questionsDOM.forEach(questionDOM => questionDOM.classList.remove("visible"));
   questionsDOM[currentQuestion].classList.add('visible');
   questionsCounterText.textContent = `Question ${ currentQuestion + 1 } of ${ numQuestions }`;
@@ -111,7 +118,23 @@ function questionIsAnswered() {
   return false;
 }
 
-setCurrentQuestionVisibility(activeQuestion);
+function showResults(){
+  const correctAnswers = [];
+  const userAnswers = [];
+  questions.forEach(question => correctAnswers.push(question.correct));
+
+  const answeredQuestions = document.querySelectorAll(".question");
+  for (const question of answeredQuestions) {
+    const answers = question.querySelectorAll(".answer");
+    for (const answer of answers) {
+      if (answer.checked) userAnswers.push(parseInt(answer.value));
+    }
+  }
+
+  const correctResults = correctAnswers.filter((correct, index) => correct === userAnswers[index]);
+  const numCorrect = correctResults.length;
+  questionsBlock.innerHTML = `<p class="results">You've got ${numCorrect} correct ${numCorrect === 1 ? 'answer' : 'answers'} out of ${numQuestions}</p>`;
+}
 
 // Buttons
 backButton.addEventListener('click', () => {
@@ -133,25 +156,6 @@ startButton.addEventListener('click', () => {
   timer =  setInterval(updateTime, 1000);
 });
 
-// Show results
-function showResults(){
-  const correctAnswers = [];
-  const userAnswers = [];
-  questions.forEach(question => correctAnswers.push(question.correct));
-
-  const answeredQuestions = document.querySelectorAll(".question");
-  for (const question of answeredQuestions) {
-    const answers = question.querySelectorAll(".answer");
-    for (const answer of answers) {
-      if (answer.checked) userAnswers.push(parseInt(answer.value));
-    }
-  }
-
-  const correctResults = correctAnswers.filter((correct, index) => correct === userAnswers[index]);
-  const numCorrect = correctResults.length;
-  questionsBlock.innerHTML = `<p class="results">You've got ${numCorrect} correct ${numCorrect === 1 ? 'answer' : 'answers'} out of ${numQuestions}</p>`;
-}
-
 finishButton.addEventListener('click',() => {
   if (questionIsAnswered()) {
     clearInterval(timer);
@@ -161,3 +165,5 @@ finishButton.addEventListener('click',() => {
     showResults();
   }
 });
+
+init();
