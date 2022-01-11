@@ -1,0 +1,94 @@
+:root {
+    --twitter-blue: #1D9BF0;
+    --light-grey-text: #444;
+    --light-grey-border: #ddd;
+}
+
+
+*, body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+.below-cover, .user-stats {
+    padding: 15px;
+}
+
+.container {
+    width: 55%;
+    margin: 0 auto;
+    border: 1px solid black;
+}
+
+.below-cover {
+    position: relative;
+    height: 60px;
+}
+
+.num-tweets, .user-name {
+    font-size: .9rem;
+    color: var(--light-grey-text);
+}
+
+.user {
+    padding: 10px 10px 10px 80px;
+    position: relative;
+}
+
+.display-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.user:before, .display-name:after {
+    content: ' ';
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.user::before {
+    background-image: url("assets/left-arrow.svg");
+    display: inline;
+    position: absolute;
+    left: 15px;
+    top: 18px;
+    cursor: pointer;
+}
+
+.display-name::after{
+    background-image: url("assets/verified.svg");
+    position: absolute;
+}
+
+.cover img{
+    width: 100%;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border: 4px white solid;
+    border-radius: 50%;
+    position: absolute;
+    top: -77px;
+}
+
+.follow {
+    color: white;
+    background-color: var(--twitter-blue);
+    padding: 15px;
+    border-radius: 10px 20px 30px 40px;
+
+
+}
+
+
+
+
+
+
+
