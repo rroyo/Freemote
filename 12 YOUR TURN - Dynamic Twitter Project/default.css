@@ -4,32 +4,38 @@
     --light-grey-border: #ddd;
 }
 
-
-*, body, html {
-    margin: 0;
-    padding: 0;
+*,
+body,
+html {
     box-sizing: border-box;
     font-family: 'Arial', sans-serif;
-}
-
-.below-cover, .user-stats {
-    padding: 15px;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 55%;
+    border: 1px solid var(--light-grey-border);
     margin: 0 auto;
-    border: 1px solid black;
+    width: 700px;
+}
+
+.below-cover,
+.user-stats {
+    padding: 15px;
 }
 
 .below-cover {
-    position: relative;
     height: 60px;
+    position: relative;
 }
 
-.num-tweets, .user-name {
-    font-size: .9rem;
+.num-tweets,
+.user-name,
+.joined-date,
+.follow-div,
+.tweet-username-time {
     color: var(--light-grey-text);
+    font-size: 0.9rem;
 }
 
 .user {
@@ -38,25 +44,28 @@
 }
 
 .display-name {
+    font-size: 1.2rem;
     font-weight: 700;
-    font-size: 1.1rem;
     position: relative;
 }
 
-.user:before, .display-name:after {
+.user::before,
+.display-name::after,
+.joined-date::before,
+.tweet-display-name::after {
     content: ' ';
     background-size: 20px 20px;
-    width: 20px;
     height: 20px;
+    width: 20px;
 }
 
 .user::before {
     background-image: url("assets/left-arrow.svg");
-    display: inline;
-    position: absolute;
-    left: 15px;
-    top: 18px;
     cursor: pointer;
+    display: inline;
+    left: 15px;
+    position: absolute;
+    top: 18px;
 }
 
 .display-name::after{
@@ -69,31 +78,115 @@
 }
 
 .avatar {
-    width: 150px;
-    height: 150px;
     border: 4px white solid;
     border-radius: 50%;
+    height: 150px;
     position: absolute;
     top: -77px;
+    width: 150px;
 }
 
-.follow {
-    display: inline-flex;
+.follow-button {
     align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    color: white;
-    text-shadow: 0px 0px white;
     background-color: var(--twitter-blue);
     border: none;
     border-radius: 35px;
-    width: 90px;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 700;
     height: 35px;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    text-shadow: 0 0 white;
+    top: 10px;
+    width: 90px;
 }
 
+.joined-date {
+    margin: 12px 0 0 22px;
+}
 
+.joined-date::before {
+    background-image: url("assets/calendar.svg");
+    position: absolute;
+    margin: -2px 0 0 -22px;
+}
 
+.follow-div {
+    margin-top: 10px;
+}
 
+.following,
+.followers {
+    color: black;
+    font-weight: 700;
+}
 
+.followers {
+    margin-left: 15px;
+}
 
+.tabs ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    border-bottom: 1px solid var(--light-grey-border);
+}
 
+.tabs li {
+    color: var(--light-grey-text);
+    cursor: pointer;
+    font-weight: 700;
+    flex-grow: 1;
+    padding: 25px 0 20px;
+    text-align: center;
+}
+
+.tabs li:first-of-type {
+    color: var(--twitter-blue);
+    border-bottom: 2px solid;
+}
+
+.tabs li:hover {
+    background-color: var(--light-grey-border);
+}
+
+.tweet {
+    display: flex;
+    font-size: 0.9rem;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--light-grey-border);
+}
+
+.tweet-avatar img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.tweet-avatar,
+.tweet-author {
+    padding: 15px 0 15px 15px;
+}
+
+.tweet-author {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.tweet-display-name {
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.tweet-display-name::after{
+    background-image: url("assets/verified.svg");
+    position: absolute;
+    top: 13px;
+}
+
+.tweet-text {
+    padding-left: 15px;
+}
